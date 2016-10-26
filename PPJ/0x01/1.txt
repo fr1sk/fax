@@ -1,0 +1,9 @@
+Tekst u ovoj datoteci sadrzi ponovljenje reci:
+
+Kao sto su:
+the the
+iza njih sledi
+pozdrav
+cao cao
+zdravo zdravo
+Bravo bravo
