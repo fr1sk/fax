@@ -1,0 +1,6 @@
+1mr00001, Pera Peric     c - java - - -
+2mi00002, Mika Mikic     - cpp - cpp cpp -
+3mv00003, Ana Anic       c java java pas - java
+4
+5
+6
