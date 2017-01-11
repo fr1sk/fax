@@ -1,0 +1,6 @@
+marko    tty8         :1               11.13 15:19    gone - no logout
+guest-hn tty7         :0               12.13 13:54    gone - no logout
+reboot   system boot  4.4.0-34-generic 2.13 13:54   still running
+marko    tty7         :0               12.12 16:48 - crash (1+21:05)
+reboot   system boot  4.4.0-34-generic 8.10 16:47   still running
+guest-kt tty8         :1               7.3 23:10 - crash (5+17:37)
