@@ -1,0 +1,23 @@
+prag svuda 40%
+
+predavanja:
+	pismeni ispit 		40 pts
+	knjiga 		-  	spisak pitanja		-	usmeni zajban
+	ispit: papir - delis na delova - 4 pitanja - nema teorije na klk
+
+vezbe:		aktivno prisustvo 	-	samo da se na sta se radilo na proslom casu 	- 	ne samo prsutan, nego aktivan
+kolokvijum:	sta ima na klk		-	nema na ispitu	-	 2, 2,5h	- 5 (2 laksa) zadataka (svi isto pts)
+pismeni ispit:	30 pts 			-	laksi klk	-	 pregledanje sve automatski
+
+literatura:	the linux programming interface  	- 	od koje do koje strane za svake vezbe
+			autor - lik koj odrzava man strane
+
+domaci:		marko majmune radi domaci
+konsultatice:	dogovor
+
+sladovi:
+	crveno - bitno
+	plavo - nesto sto ne zna
+	zeleno - veliki plusic, za one koji hoce vise
+
+

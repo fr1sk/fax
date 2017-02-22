@@ -1,0 +1,84 @@
+ls -1	-	sve u jednom redu
+ls -t	-	sa vremenom
+ls -t -r	sve unazad
+ls -R		recursive
+
+			/
+			|
+			|
+-------------------------------------------------
+|		|		|		|
+|		|		|		|
+home		opt		bin		etc
+
+apsolutna putanja: cela putanja koja se dobija sa pwd
+relativna putanja: samo deo putanje iz trenutnog foldera iz kog se nalazimo
+
+mkdir -p a/b/c/d/e	-	pravi sa sve roditelje koji fale
+mkdir -pv		- 	verbose, echuje na izlaz sta je uradio
+rm a/b/c/d/e/{2.txt 3.c Makefile}	-	brise sve pod ovim pathom navedeno u {}
+cp -i 			- 	ukoliko se nadju ista i mena on pita sta da radimo
+
+locate radi kao mala baza podataka, indeksira sve putanje fajlova	-	updatedb komanda da updateujemo malu bazicu
+locate --regex "" 	- 	stavlja regex
+find nema bazu vec pretrazuje ceo filesystem 	-	mozemo da mu zadamo putanju, korisniji za to
+find . -name '*specijalan*'
+find . -name '*~' -exec rm {} \;
+which - trazi lokaciju programa
+
+echo $PATH		-		putanja 
+korisnicke grupe - prava pristupa za neki resurs
+
+chmog u - user
+chmod g - group
+chmod o - others
+
+chmod 664
+6	6	4
+110	110	100
+rw-	rw-	r--
+
+fajlovi: sve su fajlovi na unixbased
+	- - regularni - .c .doc .txt
+	d - dir
+	b - hdd - blokovski fajl (cira sekrote - blokovske) zato se zove blokovski
+	c - terminal - bash (tty0) - karakterski, pseudo fajl, cuva kernel 
+	s - socketi, za mreznu komunikaciju
+	l - simbolicki linkovi, pokazivac na neki drugi fajl (ln -s 1.c 2.c - linkuj 1.c na 2.c) kao shortcut u win
+	p - fifo (pipe) - komunikacija izmedju 2 programa - buffer u mem kojem pristupaju oba programa (fifo arhitektura) jednosmerna komunikacija
+
+chown
+chgrp
+
+
+Makefile:
+	CC=gcc
+	CFLAGS=-Wall -Wextra
+
+1: 1.o	-- %: %.o
+	$(CC) -o 1 1.o $(CFLAGS)  -- $(CC) -o $@ $^ $(CFLAGs) -- $@ leva strana pravila, $^ desna strana pravila, $< prvi fajl sa desne strane
+
+1.o: 1.c -- %.o: %.c
+	$(CC) -c $^ $(CFLAGS)
+
+.PHONY: clean	-- tacno target, ne fajl clean
+clean:
+	rm -f *.o
+
+
+----------------
+file - ispisuje tipove fajla
+
+
+----------------
+segfault ispravljanje
+gdb putanja do programa
+	komande:
+		run a -- run i argument a
+		bt -- backtrace ide kroz funkcije, vidimo kroz koje f-je dolazi
+		b imeprograma.c:brLinije -- stanje i ne izvrsava tu linuju
+		p x -- stampa vrednost x promenjuve
+		n -- naredbu po naredbu od breakpointa i kaze koja sledeca linija
+		c -- normalno nastavlja od breakpointa
+		s -- ako hocemo f-ju da izvrsimo deo po deo, a ne samo kao jednu liniju
+
