@@ -1,0 +1,96 @@
+interfejs - skup funkcija
+2 moda izvrsavanja
+	1.privilegovan - krenel mod
+		- sme da se pozove bilo koja instrukcija (asm)
+	2.ne privilegovan - user mod
+		- nasi programi koji kotaktiraju privilegovan, izvrsava se kod os-a, kada os zavrsi nastavlja se nas kod
+		- sistemski pozivi
+
+kako su ostvareni sistemski pozivi
+	1. kako mi vidimo - c funkcije (Gnu implementacija standarnde biblioteke GLIBC - wrapper - pomaze da se pozove funkcija normalno ne iz asm)
+	2. kako je to stvarno implementirano
+
+kako se iz asm poziva sistemsi poziv?
+ 		- napunimo registre vedinostima (kod, argument), generise se softwareski prekid i preuzima ga OS
+
+paradigme za obradu gresaka:
+	1. exception (JAVA) -
+	2. kodovi greske (C)
+				 - otvaramo fajl (2 tipa greske, ne postoji fajl ili nemamo dozovle za citanje)
+			     - koristi se globalna promenjiva ERRNO koja sadrzi kodove greske koja pomaze da otkrijemo sta je izazvalo gresku
+			     - ERRNO se postvalja na 0 ako funkcija uspe da se izvrsi, ako ne uspe postavlja ERRNO na kod specificne greske i vraca vrednost
+			     - greska se otkriva proveravanjem povratne vrednosti tj koda iz ERRNO
+			     - kodovi greske se dobijaju kada ECHO $? (u fish-u ECHO $status)
+
+
+slojevi - svaki nivo koristi nivo ispod:
+	STDC
+	GLIBC - sys calls wrappovani u C-u
+	ASM
+	OS
+
+MAN - 7 razlicitih man strana:
+	1 sluzi za sistemske funkcije
+	2 nalaze se sistemski pozivi
+	3 standarnda c biblioteka
+
+znamo funkciju odprilike al ne znamo gde se nalazi - gledamo seealso man strane i tu se nalaze sve povezane funkcije
+pretrazivanje:
+	/
+	n - sledece
+
+info:
+	info slicno manu, samo GNU opsirnije.
+
+
+handle:
+	win vraca - handle
+	unix vraca - int (file deskriptor) svaki put kad se fajl otvori dobije file deskriptor
+			kernel OS-a cuva tebelu (kao hesh tabela), cij red odgovara file deskriptoru, pokazivac
+
+open funkcija:
+	mode - privilegije koje prave fajl ako ne postoji , mozemo da postavimo privilegije preko mode argumenta, ignorise se ako fajl vec postoji
+	flags - za rw,r ili w, pisanje na kraj fajla O_APPEND, O_CREATE ako fajl ne postoji, O_EXCL ako postoji a ne treba da postoji vec novi, O_TRUNC otvara fajl i brise sve iz njega, ostalo nadji u man strani
+	path - putanja do fajla
+	vraca fd
+
+read i write - ne formatirani
+			 - citamo i pisemo bajtove
+
+specijalni tipovi:
+			int32_t
+			uint64_t
+			intmax_t -- najveci int
+
+###################################################
+
+HINTOVI ZA UCITAVANJE, STDIT:
+	string dinamicke duzine:
+		char *s;
+		scanf("%ms", &s);
+		free(s);
+	citamo neki tip al nigde ne smestamo:
+		scanf("%*s%*s%d",&num); -- ignorise 2 string pa cita int
+	citamo liniju po liniju al ne znamo koja je velicina linije:
+		char *line = NULL;
+		size_t line_len = 0;
+		while(-! != getline(&line, &line_len,stdin)){
+			...
+		}
+	parsira linije:
+		"insert neka_rec 5 1.txt"
+		int bytesRead;
+		%n -- predstavalja broj procitanih bajtova
+		sscanf(line, "%s%n", cmd);
+		if(!strcmp(cmd, "insert")){
+			...
+			sscanf(line, "%s", word); -- opet cita iz pocetka
+		}
+	citanje rec po rec:
+		char word[64];
+		int total = 0;
+		int currBytes = 0;
+		while(1 == sscanf(line + total, "%s%n", word, &currBytes)){
+			...
+			total += currBytes;
+		}

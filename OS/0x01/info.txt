@@ -1,0 +1,6 @@
+20%:
+    ne zatvaranje fajlova
+    ne obradjivanje greske
+    da oslobodimo memoriju
+50%:
+    ako nemamo dinamicku alokaciju
