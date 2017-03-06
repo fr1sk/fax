@@ -77,7 +77,7 @@ HINTOVI ZA UCITAVANJE, STDIT:
 	citamo liniju po liniju al ne znamo koja je velicina linije:
 		char *line = NULL;
 		size_t line_len = 0;
-		while(-! != getline(&line, &line_len,stdin)){
+		while(-1 != getline(&line, &line_len,stdin)){
 			...
 		}
 	parsira linije:
