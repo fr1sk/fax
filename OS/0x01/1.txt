@@ -57,6 +57,9 @@ open funkcija:
 read i write - ne formatirani
 			 - citamo i pisemo bajtove
 
+read u slucaju greske vraca -1, ako je nula procitano vraca 0 (EOF), inace se vraca broj procitanih bajtova
+write vraca broj upisanih bitova, 0 ako nista nije upisano, -1 ako je doslo do greske
+
 specijalni tipovi:
 			int32_t
 			uint64_t
