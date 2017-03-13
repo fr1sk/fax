@@ -97,3 +97,21 @@ HINTOVI ZA UCITAVANJE, STDIT:
 			...
 			total += currBytes;
 		}
+
+
+pitanja za ovaj cas:
+1.
+fopen koji sistemski poziv? - open
+sta vraca open - fd
+
+2.
+koji sistemski poziv za pomeranje - lseek
+kako na pocetak - SEEK_SET
+
+3.
+read sta vraca - broj bajtova procitanih
+fprintf sta koristi - write
+
+4.
+koj sistemski za brisanje - unlink, rmdir
+sta radi unlink - objasni mare (smanjuje br hardlinkova)

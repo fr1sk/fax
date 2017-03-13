@@ -1,0 +1,81 @@
+/etc/shadow  -  cuvaju se sve kriptovane sifre
+             -  !
+             -  *
+passwordi se kriptuju crypt funkciju - man 3 crypt
+
+/etc/passwd  -  svi korisnici na sistemu se nalaze ovde
+             -  svaki red predstavlja jednog korisnika
+/etc/group   -  config file o grupama
+
+grupa - svaki korisnik mora da ima primarnu grupu
+      - kada se pravi novi fajl, fajl je dostupan primarnoj grupi korisnika koji pravi fajl
+
+
+dve grupe korisnika:
+             - sistemski - ne mogu da se loguju, sluze da regulisu neka prava
+             - pravi koisnici - fr1sk
+
+postoje i sistemske grupe slicno kao korisnici
+svi korsnici imaju po jedan ID i sistemski i pravi
+sistemski korisnici imaju id od 0-999
+sistemski korisnici imaju /bin/false, /usr/sbin/nologin - shellovi na koje nije moguce logovati se
+
+fr1sk:x:1000:1000::/home/fr1sk:/usr/bin/fish
+username:password:id_korisnika:id_grupa:gekos:homedir:shell
+gekos - osnovne informacije o korisniku (adresa, brojTelefona, ...)
+
+man 5 - sadrze informacije o config fajlovima na OS-u
+        primer: man 5 group
+
+
+chfn nalog - menjamo geco string
+
+setpwent - otvara etc/passwd fajl
+getpwent - vraca tekuci red fajla, radi pozicioniranje
+         - getpwent vraca null ako je fajl procita
+endpwent - zatvara fajl
+
+pozix - standard (svi os od unixa), koje sve fje moze da postoje
+        c99 - moze samo fje iz c99
+        setpwent... samo za unixos, nije u c99
+
+da ukljucimo pozix standard - ukljucujemo Feature Test Macro (XOPEN_SOURCE Macro)
+u man pogledamo confirming to da vidimo kojem standardu odgovaraju ove fje
+
+
+vremena vezana za fajlove:
+    vreme kreiranja fajla na sistemu ne postoji!
+    access time - kad je zadnji put otvoren
+    modification time - poslednja modifikacija, kad je fajl zadnji put promenjen
+    change time - vreme poslednje promene (obuhvata posledju modifikaciju), privilegije
+                - chane time se menja ako se menjaju privilegije, dok mod time samo ako se promeni sadrzaj fajla
+
+stat sluzi za proveru statistike fajlova
+vreme se meri u nanosec - ali koristimo sekunde
+
+stat sistemski poziv - mnogo bitan
+    st_atime - accesstime
+
+
+fje - utimes, utime, stat, utimensat (do nano sec)
+
+int stat(const char *pathname, struct stat *buf);
+st_mode polje - cuva tip fajla i prava pristupa
+              - int konstanta, mora bitovske maske
+
+st_mode - koristimo ili imena konstante ili koristimo br koji odgovaraju (oktalni br)
+
+pogledaj funkcije za grupu i korisnika
+
+velicina fajla - nikad ne koristi seek jer je potrebno da se otvori, koristi stat
+
+
+strftime - na 10. casu cemo raditi detaljnije
+         - formatiramo vreme kako hocemo
+
+ctime    - slicno tako strftime
+         - vraca string oblika ... vidi man
+         - ne moze da se formatira
+
+fstat - mozemo da dohvatimo objekat koji nema putanju
+      - 
